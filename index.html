@@ -2,63 +2,63 @@
 <html lang="da">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Dette metatag -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Salgsavance Udregner</title>
 
-<!-- Indlæs Montserrat font fra Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
-<!-- Style HTML-elementer med Montserrat font -->
 <style>
 body {
   font-family: 'Montserrat', sans-serif;
 }
 h1 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 900; /* Gør overskriften fed */
-  margin-bottom: 20px; /* Tilføj lidt mellemrum under overskriften */
+  font-weight: 900;
+  margin-bottom: 20px;
 }
 form {
-  max-width: 500px; /* Sæt maksimal bredde for formularen */
-  display: grid; /* Brug gitterlayout */
-  grid-template-columns: 1fr 1fr; /* Del formularen i to kolonner med samme bredde */
-  grid-gap: 10px; /* Tilføj lidt mellemrum mellem kolonner */
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  margin-bottom: 20px;
 }
 label {
-  font-weight: 700; /* Gør labelteksten lidt tykkere */
+  font-weight: 700;
 }
 input[type="number"],
 input[type="text"],
 button {
-  margin-bottom: 10px; /* Tilføj lidt mellemrum under nummerfelter og knapper */
-  padding: 10px; /* Øg paddingen til nummerfelter og knapper */
-  border-radius: 5px; /* Afrund hjørnerne på nummerfelter og knapper */
-  border: 1px solid #ccc; /* Tilføj en let grænse til nummerfelter og knapper */
-  width: calc(100% - 22px); /* Sæt bredden til 100% af forældreelementet minus en smule for at undgå overlapning */
-  box-sizing: border-box; /* Inkludér padding og border i elementets samlede bredde */
-  font-family: 'Montserrat', sans-serif; /* Anvend Montserrat font på inputfelter */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: calc(100% - 22px);
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 button {
-  background-color: #c31414; /* Gør knapperens baggrundsfarve rød */
-  color: #fff; /* Gør knappeteksten hvid */
-  border: none; /* Fjern kantlinjer fra knappen */
-  cursor: pointer; /* Gør musemarkøren til en hånd når du hovrer over knappen */
+  grid-column: 2;
+  background-color: #c31414;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 button:hover {
-  background-color: #c3141466; /* Ændr baggrundsfarve når du hovrer over knappen */
+  background-color: #c3141466;
 }
 #resultat {
-  margin-top: 20px; /* Tilføj lidt mellemrum over resultatsektionen */
-  padding: 10px; /* Tilføj lidt polstring for at adskille resultatet fra formularen */
-  border: 1px solid #ccc; /* Tilføj en let grænse omkring resultatsektionen */
-  border-radius: 5px; /* Afrund hjørnerne af resultatsektionen */
-  width: 100%; /* Sæt bredden af resultaterne til 100% af forældreelementet */
-  box-sizing: border-box; /* Inkludér padding og border i elementets samlede bredde */
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .resultat-label {
-  font-weight: bold; /* Gør resultatetiketterne fed */
-  display: block; /* Vis etiketterne som blokke for at sikre korrekt afstand */
-  margin-bottom: 5px; /* Tilføj lidt mellemrum under hver etiket */
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 </style>
 
@@ -66,30 +66,26 @@ button:hover {
 <body>
 <h1>Salgsavance Udregner</h1>
 <form id="avanceForm">
-    <label for="indkoebspris">Indkøbspris (ekskl. moms):</label>
-    <input type="number" id="indkoebspris" name="indkoebspris" required placeholder="Udfyld indkøbspris her">
+    <label for="indkoebspris">Indkøbspris <br>(ekskl. moms):</label>
+    <input type="number" id="indkoebspris" name="indkoebspris" required placeholder="Tast indkøbspris her">
 
     <label for="antal">Antal:</label>
-    <input type="number" id="antal" name="antal" required placeholder="Udfyld antal her">
+    <input type="number" id="antal" name="antal" required placeholder="Tast antal her">
 
-    <label for="salgspris">Salgspris (inkl. moms):</label>
-    <input type="number" id="salgspris" name="salgspris" required placeholder="Udfyld salgspris her">
+    <label for="salgspris">Salgspris <br>(inkl. moms):</label>
+    <input type="number" id="salgspris" name="salgspris" required placeholder="Tast salgspris her">
 
-    <label for="salgsavance_kroner">Salgsavance i kr. (inkl. moms):</label>
+    <label for="salgsavance_kroner">Salgsavance i kr. <br>(inkl. moms):</label>
     <input type="text" id="salgsavance_kroner" name="salgsavance_kroner" readonly>
 
-    <label for="salgsavance_procent">Salgsavance i % (inkl. moms):</label>
+    <label for="salgsavance_procent">Salgsavance i % <br>(inkl. moms):</label>
     <input type="text" id="salgsavance_procent" name="salgsavance_procent" readonly>
 
-    <button type="button" onclick="beregnAvance()">Beregn Salgsavance</button>
-    <button type="button" onclick="nulstilForm()">Nulstil</button>
+	<button type="button" onclick="nulstilForm()">Nulstil</button>
 </form>
 
 <script>
-document.getElementById("indkoebspris").addEventListener("input", beregnAvance);
-document.getElementById("antal").addEventListener("input", beregnAvance);
-document.getElementById("salgspris").addEventListener("input", beregnAvance);
-
+// Funktion til at beregne salgsavance
 function beregnAvance() {
     var indkoebsprisUdenMoms = parseFloat(document.getElementById("indkoebspris").value);
     var antal = parseInt(document.getElementById("antal").value);
@@ -104,15 +100,21 @@ function beregnAvance() {
     var salgsavanceKronerInklMoms = totalSalgsprisInklMoms - totalIndkoebsprisInklMoms;
     var salgsavanceProcent = ((totalSalgsprisInklMoms - totalIndkoebsprisInklMoms) / totalSalgsprisInklMoms) * 100;
 
-    document.getElementById("salgsavance_kroner").value = salgsavanceKronerInklMoms.toFixed(2) + " DKK";
-    document.getElementById("salgsavance_procent").value = salgsavanceProcent.toFixed(2) + " %";
+    document.getElementById("salgsavance_kroner").value = isNaN(salgsavanceKronerInklMoms) ? '0,00 DKK' : salgsavanceKronerInklMoms.toFixed(2) + " DKK";
+    document.getElementById("salgsavance_procent").value = isNaN(salgsavanceProcent) ? '0,00 %' : salgsavanceProcent.toFixed(2) + " %";
 }
 
+// Funktion til at nulstille formularen
 function nulstilForm() {
     document.getElementById("avanceForm").reset();
     document.getElementById("salgsavance_kroner").value = "";
     document.getElementById("salgsavance_procent").value = "";
 }
+
+// Eventlisteners til at lytte efter ændringer i inputfelterne og kalde beregnAvance-funktionen
+document.getElementById("indkoebspris").addEventListener("input", beregnAvance);
+document.getElementById("antal").addEventListener("input", beregnAvance);
+document.getElementById("salgspris").addEventListener("input", beregnAvance);
 </script>
 
 </body>
